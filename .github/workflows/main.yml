@@ -1,0 +1,16 @@
+name: Java CI with Maven
+on:
+ push:
+  branches: [master]
+
+jobs:
+ builds:
+  runs-on: ubuntu-latest
+  steps:
+  - name: checkout code
+    uses: actions/checkout@v4
+  - name: build java package
+    run: mvn clean install -f javarepo1/pom.xml
+  - name: SonarCloud Scan
+    run: mvn sonar:sonar -f Javarepo1/pom.xml -Dsonar.projectKey=simplilearngmm_java -Dsonar.branch.name=master -Dsonar.organization=simplilearngmm -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=immanojgm -Dsonar.token=021dda16ee5652f5de0b47df46739f3271af0515
+ 
